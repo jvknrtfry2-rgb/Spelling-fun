@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.8.4.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		pre { font-size: 10pt; font-family: "Liberation Mono", monospace; background: transparent }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot; /&gt;
+  &lt;title&gt;Spelling Fun!&lt;/title&gt;
+  &lt;style&gt;
+    :root{
+      --bg:#0b1220;
+      --card:#121b2f;
+      --card2:#0f1730;
+      --text:#eef3ff;
+      --muted:#a9b4d6;
+      --good:#2fe08a;
+      --bad:#ff5a7a;
+      --warn:#ffd166;
+      --btn:#2c5cff;
+      --btn2:#7c3aed;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --kidfont: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--kidfont);
+      background: radial-gradient(1200px 600px at 20% 10%, #1b2a52 0%, var(--bg) 60%);
+      color:var(--text);
+    }
+    header{
+      padding:18px 16px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .title{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:.3px;
+      font-size:22px;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(44,92,255,.25), rgba(124,58,237,.25));
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:10px 16px 22px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .wrap{ grid-template-columns: 1fr; }
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding:14px;
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:16px;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .muted{color:var(--muted)}
+    textarea{
+      width:100%;
+      min-height:94px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color:var(--text);
+      padding:10px 12px;
+      font-size:14px;
+      outline:none;
+      resize: vertical;
+    }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    button{
+      border:none;
+      border-radius: 14px;
+      padding:10px 12px;
+      font-weight:800;
+      cursor:pointer;
+      color:white;
+      background: linear-gradient(135deg, var(--btn), #1aa7ff);
+      box-shadow: 0 10px 18px rgba(44,92,255,.25);
+      transition: transform .05s ease;
+    }
+    button:active{ transform: translateY(1px); }
+    button.alt{
+      background: linear-gradient(135deg, var(--btn2), #ff4fd8);
+      box-shadow: 0 10px 18px rgba(124,58,237,.25);
+    }
+    button.ghost{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:none;
+      color: var(--text);
+    }
+    button.danger{
+      background: linear-gradient(135deg, #ff3b6b, #ff7b3b);
+      box-shadow: 0 10px 18px rgba(255,59,107,.18);
+    }
+    .tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .tab{
+      padding:9px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color: var(--text);
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
+      font-size:13px;
+    }
+    .tab.active{
+      background: linear-gradient(135deg, rgba(44,92,255,.35), rgba(124,58,237,.35));
+      border-color: rgba(255,255,255,.18);
+    }
+    .game{
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:12px;
+      min-height: 280px;
+    }
+    .bigWord{
+      font-size:42px;
+      font-weight:1000;
+      letter-spacing:.6px;
+      text-align:center;
+      margin: 10px 0 12px;
+      text-transform: lowercase;
+    }
+    .hint{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.12);
+      font-weight:800;
+      font-size:12px;
+      color:var(--muted);
+    }
+    input[type=&quot;text&quot;]{
+      width:100%;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color:var(--text);
+      padding:12px;
+      font-size:16px;
+      outline:none;
+    }
+    .feedback{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      font-weight:900;
+    }
+    .feedback.good{ border-color: rgba(47,224,138,.35); background: rgba(47,224,138,.10); }
+    .feedback.bad{ border-color: rgba(255,90,122,.35); background: rgba(255,90,122,.10); }
+    .progressGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:8px;
+    }
+    @media (max-width: 520px){
+      .progressGrid{ grid-template-columns: 1fr; }
+    }
+    .wordCard{
+      padding:10px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .wordTop{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      font-weight:1000;
+    }
+    .stars{
+      letter-spacing: 1px;
+      color: var(--warn);
+      font-size: 14px;
+      white-space:nowrap;
+    }
+    .tiny{
+      font-size:12px; color:var(--muted);
+      margin-top:2px;
+    }
+    .footerRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .kbd{
+      font-size:12px;
+      padding:3px 8px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color:var(--muted);
+      font-weight:900;
+    }
+    .mini{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius: 12px;
+      font-weight:900;
+    }
+    .sr{
+      display:none;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;header&gt;
+  &lt;div class=&quot;title&quot;&gt;✨ Spelling Fun! &lt;span class=&quot;badge&quot; id=&quot;weekBadge&quot;&gt;No words yet&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;span class=&quot;kbd&quot;&gt;Tip: press Enter to check&lt;/span&gt;
+    &lt;button class=&quot;ghost mini&quot; id=&quot;speakBtn&quot; title=&quot;Read the current word aloud&quot;&gt;🔊 Speak&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class=&quot;wrap&quot;&gt;
+  &lt;!-- LEFT: GAME --&gt;
+  &lt;section class=&quot;card&quot;&gt;
+    &lt;h2&gt;
+      &lt;span&gt;Play a Game&lt;/span&gt;
+      &lt;span class=&quot;muted&quot; id=&quot;gameStatus&quot;&gt;—&lt;/span&gt;
+    &lt;/h2&gt;
+
+    &lt;div class=&quot;tabs&quot; id=&quot;tabs&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;game&quot; id=&quot;gameArea&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;footerRow&quot;&gt;
+      &lt;button id=&quot;prevBtn&quot; class=&quot;ghost&quot;&gt;⬅️ Prev&lt;/button&gt;
+      &lt;button id=&quot;nextBtn&quot; class=&quot;ghost&quot;&gt;Next ➡️&lt;/button&gt;
+      &lt;button id=&quot;shuffleBtn&quot; class=&quot;alt&quot;&gt;🎲 Surprise Me&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- RIGHT: WORDS + PROGRESS --&gt;
+  &lt;aside class=&quot;card&quot;&gt;
+    &lt;h2&gt;
+      &lt;span&gt;Weekly Words&lt;/span&gt;
+      &lt;span class=&quot;muted&quot; id=&quot;countBadge&quot;&gt;0 words&lt;/span&gt;
+    &lt;/h2&gt;
+
+    &lt;p class=&quot;muted&quot; style=&quot;margin-top:0&quot;&gt;
+      Paste your list (one per line or separated by commas). Click &lt;b&gt;Save Week&lt;/b&gt;.
+    &lt;/p&gt;
+
+    &lt;textarea id=&quot;wordsInput&quot; placeholder=&quot;example:
+because
+friend
+beautiful
+practice&quot;&gt;&lt;/textarea&gt;
+
+    &lt;div class=&quot;row&quot; style=&quot;margin-top:10px&quot;&gt;
+      &lt;button id=&quot;saveBtn&quot;&gt;💾 Save Week&lt;/button&gt;
+      &lt;button id=&quot;resetProgressBtn&quot; class=&quot;ghost&quot;&gt;⭐ Reset Stars&lt;/button&gt;
+      &lt;button id=&quot;clearAllBtn&quot; class=&quot;danger&quot;&gt;🧨 Clear Everything&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;hr style=&quot;border:none;border-top:1px solid rgba(255,255,255,.10); margin:14px 0&quot;&gt;
+
+    &lt;h2 style=&quot;margin-top:0&quot;&gt;
+      &lt;span&gt;Progress&lt;/span&gt;
+      &lt;span class=&quot;muted&quot; id=&quot;masteredBadge&quot;&gt;0 mastered&lt;/span&gt;
+    &lt;/h2&gt;
+
+    &lt;div class=&quot;progressGrid&quot; id=&quot;progressGrid&quot;&gt;&lt;/div&gt;
+
+    &lt;p class=&quot;muted&quot; style=&quot;margin:12px 0 0&quot;&gt;
+      Stars: ✅ correct answers this week (max 5). At 5 stars, a word is “mastered.”
+    &lt;/p&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // -----------------------------
+  // Storage + State
+  // -----------------------------
+  const LS_KEY = &quot;spellingFun.v1&quot;;
+  const DEFAULT = { weekLabel: &quot;&quot;, words: [], progress: {} };
+
+  let state = loadState();
+  let currentIndex = 0;
+  let currentMode = &quot;flashcards&quot;; // default
+
+  const MODES = [
+    { id: &quot;flashcards&quot;, label: &quot;🃏 Flashcards&quot; },
+    { id: &quot;type&quot;,       label: &quot;⌨️ Type It&quot; },
+    { id: &quot;scramble&quot;,   label: &quot;🧩 Scramble&quot; },
+    { id: &quot;listen&quot;,     label: &quot;👂 Listen &amp; Type&quot; },
+  ];
+
+  // -----------------------------
+  // Helpers
+  // -----------------------------
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(!raw) return structuredClone(DEFAULT);
+      const parsed = JSON.parse(raw);
+      return { ...structuredClone(DEFAULT), ...parsed };
+    }catch{
+      return structuredClone(DEFAULT);
+    }
+  }
+
+  function saveState(){
+    localStorage.setItem(LS_KEY, JSON.stringify(state));
+    renderAll();
+  }
+
+  function sanitizeWords(text){
+    // split by newline or comma, trim, keep letters/apostrophes/hyphens
+    const parts = text
+      .split(/[\n,]+/g)
+      .map(s =&gt; s.trim())
+      .filter(Boolean)
+      .map(s =&gt; s.replace(/[^\p{L}'-]/gu, &quot;&quot;)) // unicode letters
+      .filter(Boolean);
+
+    // de-dupe while preserving order
+    const seen = new Set();
+    const out = [];
+    for(const w of parts){
+      const k = w.toLowerCase();
+      if(!seen.has(k)){
+        seen.add(k);
+        out.push(w);
+      }
+    }
+    return out;
+  }
+
+  function getWord(){
+    return state.words[currentIndex] || &quot;&quot;;
+  }
+
+  function ensureProgress(word){
+    const k = word.toLowerCase();
+    if(!state.progress[k]) state.progress[k] = { stars: 0, tries: 0, correct: 0, lastPlayed: null };
+    return state.progress[k];
+  }
+
+  function addStar(word){
+    const p = ensureProgress(word);
+    p.tries += 1;
+    p.correct += 1;
+    p.lastPlayed = Date.now();
+    p.stars = Math.min(5, p.stars + 1);
+    saveState();
+  }
+
+  function recordTry(word, wasCorrect){
+    const p = ensureProgress(word);
+    p.tries += 1;
+    if(wasCorrect) p.correct += 1;
+    p.lastPlayed = Date.now();
+    // If wrong, gently reduce stars sometimes (keeps it motivating)
+    if(!wasCorrect &amp;&amp; p.stars &gt; 0){
+      p.stars -= 1;
+    }
+    saveState();
+  }
+
+  function starsToEmoji(n){
+    return &quot;⭐&quot;.repeat(n) + &quot;☆&quot;.repeat(Math.max(0, 5-n));
+  }
+
+  function masteredCount(){
+    return Object.values(state.progress).filter(p =&gt; p.stars &gt;= 5).length;
+  }
+
+  function weekLabelFromWords(words){
+    const d = new Date();
+    const pretty = d.toLocaleDateString(undefined, { year:&quot;numeric&quot;, month:&quot;short&quot;, day:&quot;numeric&quot; });
+    return `Week of ${pretty} (${words.length} words)`;
+  }
+
+  function shuffleArray(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i&gt;0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function pickNextIndexSmart(){
+    // A light “spaced repetition”-ish picker:
+    // prefer words with fewer stars, then ones not recently played.
+    if(state.words.length === 0) return 0;
+
+    const scored = state.words.map((w, idx) =&gt; {
+      const p = ensureProgress(w);
+      const stars = p.stars ?? 0;
+      const last = p.lastPlayed ?? 0;
+      const recency = Date.now() - last; // larger = longer ago
+      // lower stars should be chosen more; longer-ago should be chosen more
+      const score = (5 - stars) * 1000 + Math.min(5000, recency/1000);
+      return { idx, score };
+    });
+
+    scored.sort((a,b)=&gt; b.score - a.score);
+    // choose among top 4 for variety
+    const top = scored.slice(0, Math.min(4, scored.length));
+    return top[Math.floor(Math.random()*top.length)].idx;
+  }
+
+  // -----------------------------
+  // Speech
+  // -----------------------------
+  function speak(text){
+    if(!text) return;
+    if(!(&quot;speechSynthesis&quot; in window)){
+      alert(&quot;Sorry — your browser can’t speak out loud. Try Chrome or Edge.&quot;);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.9;
+    u.pitch = 1.1;
+    window.speechSynthesis.speak(u);
+  }
+
+  // -----------------------------
+  // UI Rendering
+  // -----------------------------
+  const tabsEl = document.getElementById(&quot;tabs&quot;);
+  const gameArea = document.getElementById(&quot;gameArea&quot;);
+  const wordsInput = document.getElementById(&quot;wordsInput&quot;);
+  const weekBadge = document.getElementById(&quot;weekBadge&quot;);
+  const countBadge = document.getElementById(&quot;countBadge&quot;);
+  const masteredBadge = document.getElementById(&quot;masteredBadge&quot;);
+  const progressGrid = document.getElementById(&quot;progressGrid&quot;);
+  const gameStatus = document.getElementById(&quot;gameStatus&quot;);
+
+  document.getElementById(&quot;saveBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    const words = sanitizeWords(wordsInput.value);
+    if(words.length === 0){
+      alert(&quot;Add at least 1 word first 🙂&quot;);
+      return;
+    }
+    state.words = words;
+    state.weekLabel = weekLabelFromWords(words);
+
+    // keep progress for same words, but remove old words from progress display
+    // (won't delete progress data; just not used unless word returns)
+    currentIndex = 0;
+    saveState();
+  });
+
+  document.getElementById(&quot;resetProgressBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    if(state.words.length === 0) return;
+    for(const w of state.words){
+      const k = w.toLowerCase();
+      state.progress[k] = { stars: 0, tries: 0, correct: 0, lastPlayed: null };
+    }
+    saveState();
+  });
+
+  document.getElementById(&quot;clearAllBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    const ok = confirm(&quot;Clear all saved words and stars?&quot;);
+    if(!ok) return;
+    state = structuredClone(DEFAULT);
+    currentIndex = 0;
+    saveState();
+  });
+
+  document.getElementById(&quot;prevBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    if(state.words.length === 0) return;
+    currentIndex = (currentIndex - 1 + state.words.length) % state.words.length;
+    renderGame();
+  });
+
+  document.getElementById(&quot;nextBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    if(state.words.length === 0) return;
+    currentIndex = (currentIndex + 1) % state.words.length;
+    renderGame();
+  });
+
+  document.getElementById(&quot;shuffleBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    if(state.words.length === 0) return;
+    currentIndex = pickNextIndexSmart();
+    renderGame();
+  });
+
+  document.getElementById(&quot;speakBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+    speak(getWord());
+  });
+
+  function renderTabs(){
+    tabsEl.innerHTML = &quot;&quot;;
+    for(const m of MODES){
+      const el = document.createElement(&quot;div&quot;);
+      el.className = &quot;tab&quot; + (m.id === currentMode ? &quot; active&quot; : &quot;&quot;);
+      el.textContent = m.label;
+      el.addEventListener(&quot;click&quot;, () =&gt; {
+        currentMode = m.id;
+        renderTabs();
+        renderGame();
+      });
+      tabsEl.appendChild(el);
+    }
+  }
+
+  function renderAll(){
+    weekBadge.textContent = state.weekLabel || &quot;No words yet&quot;;
+    countBadge.textContent = `${state.words.length} word${state.words.length===1?&quot;&quot;:&quot;s&quot;}`;
+    masteredBadge.textContent = `${masteredCount()} mastered`;
+    wordsInput.value = state.words.join(&quot;\n&quot;);
+    renderTabs();
+    renderProgress();
+    renderGame();
+  }
+
+  function renderProgress(){
+    progressGrid.innerHTML = &quot;&quot;;
+    for(const w of state.words){
+      const p = ensureProgress(w);
+      const card = document.createElement(&quot;div&quot;);
+      card.className = &quot;wordCard&quot;;
+      card.innerHTML = `
+        &lt;div class=&quot;wordTop&quot;&gt;
+          &lt;span&gt;${escapeHtml(w)}&lt;/span&gt;
+          &lt;span class=&quot;stars&quot; title=&quot;Stars&quot;&gt;${starsToEmoji(p.stars || 0)}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;tiny&quot;&gt;${p.correct || 0} correct • ${p.tries || 0} tries&lt;/div&gt;
+        &lt;div class=&quot;row&quot; style=&quot;margin-top:8px&quot;&gt;
+          &lt;button class=&quot;ghost mini&quot; data-act=&quot;practice&quot;&gt;Play&lt;/button&gt;
+          &lt;button class=&quot;ghost mini&quot; data-act=&quot;say&quot;&gt;🔊&lt;/button&gt;
+        &lt;/div&gt;
+      `;
+      card.querySelector('[data-act=&quot;practice&quot;]').addEventListener(&quot;click&quot;, () =&gt; {
+        currentIndex = state.words.indexOf(w);
+        renderGame();
+      });
+      card.querySelector('[data-act=&quot;say&quot;]').addEventListener(&quot;click&quot;, () =&gt; speak(w));
+      progressGrid.appendChild(card);
+    }
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&amp;&lt;&gt;&quot;']/g, c =&gt; ({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','&quot;':'&amp;quot;',&quot;'&quot;:'&amp;#39;'}[c]));
+  }
+
+  // -----------------------------
+  // Game Modes
+  // -----------------------------
+  function renderGame(){
+    const word = getWord();
+    if(state.words.length === 0){
+      gameArea.innerHTML = `
+        &lt;div class=&quot;muted&quot; style=&quot;text-align:center; padding:30px 10px&quot;&gt;
+          Add weekly words on the right, then press &lt;b&gt;Save Week&lt;/b&gt; 💾
+        &lt;/div&gt;
+      `;
+      gameStatus.textContent = &quot;—&quot;;
+      return;
+    }
+
+    const p = ensureProgress(word);
+    gameStatus.textContent = `${currentIndex+1}/${state.words.length} • ${starsToEmoji(p.stars || 0)}`;
+
+    if(currentMode === &quot;flashcards&quot;) renderFlashcards(word);
+    if(currentMode === &quot;type&quot;) renderTypeIt(word);
+    if(currentMode === &quot;scramble&quot;) renderScramble(word);
+    if(currentMode === &quot;listen&quot;) renderListen(word);
+  }
+
+  function renderFlashcards(word){
+    const letters = word.length;
+    const hint = hintFor(word);
+
+    gameArea.innerHTML = `
+      &lt;div class=&quot;bigWord&quot; id=&quot;cardWord&quot; style=&quot;filter: blur(10px); user-select:none;&quot;&gt;${escapeHtml(word)}&lt;/div&gt;
+      &lt;div class=&quot;hint&quot;&gt;
+        &lt;span class=&quot;pill&quot;&gt;Letters: &lt;b&gt;${letters}&lt;/b&gt;&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;First letter: &lt;b&gt;${escapeHtml(word[0])}&lt;/b&gt;&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;Hint: &lt;b&gt;${escapeHtml(hint)}&lt;/b&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;row&quot;&gt;
+        &lt;button id=&quot;revealBtn&quot; class=&quot;alt&quot;&gt;👀 Reveal&lt;/button&gt;
+        &lt;button id=&quot;sayBtn&quot; class=&quot;ghost&quot;&gt;🔊 Hear it&lt;/button&gt;
+        &lt;button id=&quot;gotItBtn&quot;&gt;✅ I know it!&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;muted&quot; style=&quot;margin-top:10px&quot;&gt;
+        Tap &lt;b&gt;Reveal&lt;/b&gt;, read it aloud, then hit &lt;b&gt;I know it!&lt;/b&gt; for a star.
+      &lt;/div&gt;
+    `;
+
+    const cardWord = document.getElementById(&quot;cardWord&quot;);
+    document.getElementById(&quot;revealBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+      cardWord.style.filter = &quot;none&quot;;
+    });
+    document.getElementById(&quot;sayBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; speak(word));
+    document.getElementById(&quot;gotItBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; addStar(word));
+  }
+
+  function renderTypeIt(word){
+    gameArea.innerHTML = `
+      &lt;div class=&quot;hint&quot;&gt;
+        &lt;span class=&quot;pill&quot;&gt;Type the word&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;Letters: &lt;b&gt;${word.length}&lt;/b&gt;&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;First: &lt;b&gt;${escapeHtml(word[0])}&lt;/b&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;bigWord&quot; style=&quot;font-size:28px; opacity:.9; text-align:center;&quot;&gt;${maskWord(word)}&lt;/div&gt;
+      &lt;div style=&quot;margin-top:12px&quot;&gt;
+        &lt;input id=&quot;answer&quot; type=&quot;text&quot; autocomplete=&quot;off&quot; placeholder=&quot;Type here…&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;row&quot; style=&quot;margin-top:10px&quot;&gt;
+        &lt;button id=&quot;checkBtn&quot;&gt;✅ Check&lt;/button&gt;
+        &lt;button id=&quot;hintBtn&quot; class=&quot;ghost&quot;&gt;💡 Hint&lt;/button&gt;
+        &lt;button id=&quot;sayBtn&quot; class=&quot;ghost&quot;&gt;🔊 Hear it&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;fb&quot; class=&quot;feedback&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
+    `;
+
+    const ans = document.getElementById(&quot;answer&quot;);
+    const fb = document.getElementById(&quot;fb&quot;);
+
+    function showFeedback(ok, msg){
+      fb.style.display = &quot;block&quot;;
+      fb.className = &quot;feedback &quot; + (ok ? &quot;good&quot; : &quot;bad&quot;);
+      fb.textContent = msg;
+    }
+
+    function check(){
+      const typed = (ans.value || &quot;&quot;).trim();
+      if(!typed) return;
+      const ok = typed.toLowerCase() === word.toLowerCase();
+      recordTry(word, ok);
+      if(ok){
+        showFeedback(true, &quot;Awesome! ⭐ You got it!&quot;);
+        ans.value = &quot;&quot;;
+      }else{
+        showFeedback(false, `Oops! Try again. First letter is &quot;${word[0]}&quot;.`);
+        ans.select();
+      }
+    }
+
+    document.getElementById(&quot;checkBtn&quot;).addEventListener(&quot;click&quot;, check);
+    document.getElementById(&quot;hintBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+      showFeedback(true, `Hint: ${hintFor(word)} • Last letter: &quot;${word[word.length-1]}&quot;`);
+    });
+    document.getElementById(&quot;sayBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; speak(word));
+
+    ans.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if(e.key === &quot;Enter&quot;) check();
+    });
+    ans.focus();
+  }
+
+  function renderScramble(word){
+    const scrambled = scramble(word);
+    gameArea.innerHTML = `
+      &lt;div class=&quot;hint&quot;&gt;
+        &lt;span class=&quot;pill&quot;&gt;Unscramble!&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;Letters: &lt;b&gt;${word.length}&lt;/b&gt;&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;Starts with: &lt;b&gt;${escapeHtml(word[0])}&lt;/b&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;bigWord&quot; style=&quot;font-size:40px; text-transform:none;&quot;&gt;${escapeHtml(scrambled)}&lt;/div&gt;
+      &lt;input id=&quot;answer&quot; type=&quot;text&quot; autocomplete=&quot;off&quot; placeholder=&quot;Type the real word…&quot; /&gt;
+      &lt;div class=&quot;row&quot; style=&quot;margin-top:10px&quot;&gt;
+        &lt;button id=&quot;checkBtn&quot;&gt;✅ Check&lt;/button&gt;
+        &lt;button id=&quot;newScrambleBtn&quot; class=&quot;alt&quot;&gt;🔁 New scramble&lt;/button&gt;
+        &lt;button id=&quot;sayBtn&quot; class=&quot;ghost&quot;&gt;🔊 Hear it&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;fb&quot; class=&quot;feedback&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
+    `;
+
+    const ans = document.getElementById(&quot;answer&quot;);
+    const fb = document.getElementById(&quot;fb&quot;);
+
+    function showFeedback(ok, msg){
+      fb.style.display = &quot;block&quot;;
+      fb.className = &quot;feedback &quot; + (ok ? &quot;good&quot; : &quot;bad&quot;);
+      fb.textContent = msg;
+    }
+
+    function check(){
+      const typed = (ans.value || &quot;&quot;).trim();
+      if(!typed) return;
+      const ok = typed.toLowerCase() === word.toLowerCase();
+      recordTry(word, ok);
+      if(ok){
+        showFeedback(true, &quot;You solved it! ⭐&quot;);
+        ans.value = &quot;&quot;;
+      }else{
+        showFeedback(false, &quot;Not quite — look closely and try again!&quot;);
+        ans.select();
+      }
+    }
+
+    document.getElementById(&quot;checkBtn&quot;).addEventListener(&quot;click&quot;, check);
+    document.getElementById(&quot;newScrambleBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; renderScramble(word));
+    document.getElementById(&quot;sayBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; speak(word));
+
+    ans.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if(e.key === &quot;Enter&quot;) check();
+    });
+    ans.focus();
+  }
+
+  function renderListen(word){
+    gameArea.innerHTML = `
+      &lt;div class=&quot;hint&quot;&gt;
+        &lt;span class=&quot;pill&quot;&gt;Listen, then type&lt;/span&gt;
+        &lt;span class=&quot;pill&quot;&gt;Press 🔊 and type what you hear&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;bigWord&quot; style=&quot;font-size:28px; opacity:.8; text-align:center;&quot;&gt;(Don’t peek!)&lt;/div&gt;
+      &lt;div class=&quot;row&quot; style=&quot;justify-content:center; margin:6px 0 12px&quot;&gt;
+        &lt;button id=&quot;sayBtn&quot; class=&quot;alt&quot;&gt;🔊 Say the word&lt;/button&gt;
+        &lt;button id=&quot;slowBtn&quot; class=&quot;ghost&quot;&gt;🐢 Slower&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;input id=&quot;answer&quot; type=&quot;text&quot; autocomplete=&quot;off&quot; placeholder=&quot;Type the word you heard…&quot; /&gt;
+      &lt;div class=&quot;row&quot; style=&quot;margin-top:10px&quot;&gt;
+        &lt;button id=&quot;checkBtn&quot;&gt;✅ Check&lt;/button&gt;
+        &lt;button id=&quot;hintBtn&quot; class=&quot;ghost&quot;&gt;💡 Hint&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;fb&quot; class=&quot;feedback&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
+    `;
+
+    const ans = document.getElementById(&quot;answer&quot;);
+    const fb = document.getElementById(&quot;fb&quot;);
+
+    function say(rate=0.9){
+      if(!(&quot;speechSynthesis&quot; in window)){
+        alert(&quot;Sorry — your browser can’t speak out loud. Try Chrome or Edge.&quot;);
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(word);
+      u.rate = rate;
+      u.pitch = 1.05;
+      window.speechSynthesis.speak(u);
+    }
+
+    function showFeedback(ok, msg){
+      fb.style.display = &quot;block&quot;;
+      fb.className = &quot;feedback &quot; + (ok ? &quot;good&quot; : &quot;bad&quot;);
+      fb.textContent = msg;
+    }
+
+    function check(){
+      const typed = (ans.value || &quot;&quot;).trim();
+      if(!typed) return;
+      const ok = typed.toLowerCase() === word.toLowerCase();
+      recordTry(word, ok);
+      if(ok){
+        showFeedback(true, &quot;Great listening! ⭐&quot;);
+        ans.value = &quot;&quot;;
+      }else{
+        showFeedback(false, &quot;Close! Press 🔊 again and try one more time.&quot;);
+        ans.select();
+      }
+    }
+
+    document.getElementById(&quot;sayBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; say(0.9));
+    document.getElementById(&quot;slowBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; say(0.7));
+    document.getElementById(&quot;hintBtn&quot;).addEventListener(&quot;click&quot;, () =&gt; showFeedback(true, `Hint: starts with &quot;${word[0]}&quot; and has ${word.length} letters.`));
+    document.getElementById(&quot;checkBtn&quot;).addEventListener(&quot;click&quot;, check);
+
+    ans.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+      if(e.key === &quot;Enter&quot;) check();
+    });
+
+    // auto-say once on entry
+    setTimeout(() =&gt; say(0.9), 200);
+    ans.focus();
+  }
+
+  // -----------------------------
+  // Mini word utilities for fun hints
+  // -----------------------------
+  function maskWord(word){
+    // show first letter + blanks
+    if(word.length &lt;= 2) return word[0] + &quot; _&quot;;
+    return word[0] + &quot; &quot; + &quot;_ &quot;.repeat(word.length-1).trim();
+  }
+
+  function scramble(word){
+    if(word.length &lt; 4) return word; // too short
+    const letters = word.split(&quot;&quot;);
+    // keep first letter to reduce frustration
+    const first = letters.shift();
+    const rest = shuffleArray(letters);
+    return first + rest.join(&quot;&quot;);
+  }
+
+  function hintFor(word){
+    const lower = word.toLowerCase();
+    // kid-friendly, simple hints without needing definitions
+    if(lower.includes(&quot;ea&quot;)) return 'has &quot;ea&quot;';
+    if(lower.includes(&quot;ou&quot;)) return 'has &quot;ou&quot;';
+    if(lower.endsWith(&quot;ing&quot;)) return 'ends with &quot;ing&quot;';
+    if(lower.endsWith(&quot;ed&quot;)) return 'ends with &quot;ed&quot;';
+    if(lower.includes(&quot;oo&quot;)) return 'has &quot;oo&quot;';
+    if(lower.includes(&quot;tion&quot;)) return 'has &quot;tion&quot;';
+    if(lower.includes(&quot;'&quot;)) return &quot;has an apostrophe&quot;;
+    if(lower.includes(&quot;-&quot;)) return &quot;has a hyphen&quot;;
+    // fallback: chunk middle letters
+    if(word.length &gt;= 5){
+      const mid = word.slice(1, Math.min(4, word.length-1));
+      return `middle looks like &quot;${mid}&quot;`;
+    }
+    return `ends with &quot;${word[word.length-1]}&quot;`;
+  }
+
+  // -----------------------------
+  // Init
+  // -----------------------------
+  renderAll();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
